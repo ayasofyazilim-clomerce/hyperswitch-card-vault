@@ -15,8 +15,8 @@ RUN apt-get update \
 COPY . .
 # Use a conditional to set the features flag based on DEV value
 RUN if [ "$DEV" = "true" ]; then \
-        cargo build --release --features dev ${EXTRA_FEATURES}; \
-        echo "Building with dev features"; \
+        cargo build --release ${EXTRA_FEATURES}; \
+        echo "Building with default (dev) features — no middleware/custodian/KMS"; \
     else \
         cargo build --release --features release ${EXTRA_FEATURES}; \
         echo "Building with release features"; \
